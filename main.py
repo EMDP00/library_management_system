@@ -28,7 +28,7 @@ def main():
         elif choice == "2":
             member_id = input("Member ID: ")
             name = input("Name: ")
-            member = Member(member_id, name)
+            member = input(member_id, name)
             if library.add_member(member):
                 print("Member added successfully!")
             else:
