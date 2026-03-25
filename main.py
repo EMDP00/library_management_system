@@ -1,4 +1,6 @@
 from library import Library
+from book import Book
+from member import Member
 
 def main():
     library = Library()
@@ -15,20 +17,20 @@ def main():
         choice = input("Enter your choice: ")
 
         if choice == "1":
-            book_id = input("Book ID: ")
+            book_id = int(input("Book ID: "))
             title = input("Title: ")
             author = input("Author: ")
             copies = int(input("Copies: "))
-            book = book(book_id, title, author, copies)
+            book = Book(book_id, title, author, copies)
             if library.add_book(book):
                 print("Book added successfully!")
             else:
                 print("Book ID already exists.")
 
         elif choice == "2":
-            member_id = input("Member ID: ")
+            member_id = int(input("Member ID: "))
             name = input("Name: ")
-            member = input(member_id, name)
+            member = Member(member_id, name, [])
             if library.add_member(member):
                 print("Member added successfully!")
             else:

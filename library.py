@@ -2,9 +2,9 @@ from member import Member
 
 # Bibloteks klasse: Styre bøger, medlemmer, samt håndtere oprettelse og fjernelse af bøger
 class Library:
-    def __init__(self, books, members):
-        self.books = books
-        self.members = members
+    def __init__(self, books=None, members=None):
+        self.books = books if books is not None else {}
+        self.members = members if members is not None else{}
 
     def add_book(self, book):
         if book.book_id not in self.books:
@@ -51,6 +51,8 @@ class Library:
         return False
     
     def issue_book(self, member_id, book_id):
+        book_id = int(book_id)
+        member_id = int(member_id)
         if member_id in self.members and book_id in self.books:
             member = self.members[member_id]
             book = self.books[book_id]
