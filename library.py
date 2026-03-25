@@ -60,6 +60,8 @@ class Library:
         return False
     
     def return_book(self, member_id, book_id):
+        book_id = int(book_id)
+        member_id = int(member_id)
         if member_id in self.members and book_id in self.books:
             member = self.members[member_id]
             book = self.books[book_id]
