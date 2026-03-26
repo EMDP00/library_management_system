@@ -63,7 +63,7 @@ class Library:
     def add_member(self, name):
         member_id = self.next_member_id
         self.next_member_id += 1
-        member = Member(member_id, name, [])
+        member = Member(member_id, name)
         self.members[member_id] = member
         return member_id
 
