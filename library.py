@@ -11,12 +11,13 @@ class Library:
         if self.books:
             self.next_book_id = max(self.books.keys()) + 1
         if self.members:
-            self.next_book_id = max(self.members.keys()) + 1 
+            self.next_member_id = max(self.members.keys()) + 1 
 
     def add_book(self, title, author, copies):
         for book in self.books.values():
             if book.title.lower() == title.lower() and book.author.lower() == author.lower():
                 print("A book with the same title and author already exists, if you want to update press 2")
+                return None
         book_id = self.next_book_id
         self.next_book_id += 1
         book = Book(book_id, title, author, copies)
@@ -26,27 +27,6 @@ class Library:
     def remove_book(self, book_id):
         if book_id in self.books:
             del self.books[book_id]
-            return True
-        return False
-    
-    def update_book(self, book_id, title=None, author=None, copies=None):
-        if book_id in self.books:
-            book = self.books[book_id]
-            if title:
-                if not title.strip():
-                    print("Title cannot be empty.")
-                    return False
-                book.title = title
-            if author:
-                if not author.strip():
-                    print("Author cannot be empty.")
-                    return False
-                book.author = author
-            if copies is not None:
-                if copies <0:
-                    print("Copies cannot be negative.")
-                    return False
-                book.copies = copies
             return True
         return False
     
@@ -78,12 +58,9 @@ class Library:
     def update_member(self, member_id, name=None):
         if member_id in self.members:
             member = self.members[member_id]
-            if name:
-                if not name.strip():
-                    print("Name Cannot be empty.")
-                    return False
+            if name is not None and name.strip():
                 member.name = name
-            return True
+            return True    
         return False
     
     def issue_book(self, member_id, book_id):

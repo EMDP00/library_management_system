@@ -1,7 +1,7 @@
 from book import Book
 # Medlems klasse: Styre medlemmer i et biblotek, deres attributes og funktioner
 class Member:
-    def __init__(self, member_id, name, borrowed_books):
+    def __init__(self, member_id, name):
         self.member_id = member_id
         self.name = name
         self.borrowed_books = []
