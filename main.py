@@ -1,7 +1,6 @@
 from library import Library
-from book import Book
-from member import Member
 
+#Main funktion til at initialisere og kører systemet
 def main():
     library = Library()
     while True:
@@ -21,7 +20,7 @@ def main():
     
 
         choice = input("Enter your choice: ")
-
+    #Hvis brugeren vil oprette en bog i systemet med titel, forfatter og antal kopier
         if choice == "1":
             title = input("Title: ")
             author = input("Author: ")
@@ -34,7 +33,7 @@ def main():
                     print("A book with the same title and author already exists.")
             except ValueError:
                 print("Invalid input for copies. Please enter a valid number.")
-
+    #Hvis Brugeren vil opdatere en bog med enten navn, titel, forfatter eller antal kopier 
         elif choice == "2":
             try:
                 book_id = int(input("Enter Book ID to update: "))
@@ -52,6 +51,7 @@ def main():
             except ValueError:
                 print("Invalid input for Book ID. Please enter a valid number.")
         
+        # Hvis brugeren vil fjerne en bog fra systemet, dette gøres med book_id
         elif choice == "3":
             book_id = input("Enter Book ID to remove: ")
             try:
@@ -63,11 +63,13 @@ def main():
             except ValueError:
                 print("Invalid input. Please enter a valid number.")
 
+        #Hvis brugeren vil oprette et medlem med navn, member_id bliver givet automatisk
         elif choice == "4":
             name = input("Name: ")
             member_id = library.add_member(name)
             print(f"Member added successfully! ID: {member_id}")
 
+        #Hvis brugeren vil opdatere et medlems navn, med member_id
         elif choice == "5":
             try:
                 member_id = int(input("Enter Member ID to update: "))
@@ -79,6 +81,7 @@ def main():
             except ValueError:
                 print("Invalid input for Member ID. Please enter a valid number.")
 
+        #Hvis brugeren vil fjerne et medlem med member_id
         elif choice == "6":
             member_id = input("Enter Member ID to remove: ")
             try:
@@ -90,6 +93,7 @@ def main():
             except ValueError:
                 print("Invalid input. Please enter a valid number.")
         
+        #Hvis brugeren vil låne en bog til et medlem, her bruges member_id og book_id
         elif choice == "7":
             member_id = input("Member ID: ")
             book_id = input("Book ID: ")
@@ -103,6 +107,7 @@ def main():
             except ValueError:
                 print("Invalid input. Please enter valid numbers for Member ID and Book ID.")
 
+        #Hvis brugeren vil aflevere en bog fra et medlem, her bruges member_id og Book_id
         elif choice == "8":
             member_id = input("Member ID: ")
             book_id = input("Book ID: ")
@@ -116,6 +121,7 @@ def main():
             except ValueError:
                 print("Invalid input. Please enter valid numbers for Member ID and Book ID.")
 
+        #Hvis brugeren vil se hvilke bøger der er i bibloteket
         elif choice == "9":
             books = library.display_books()
             if books:
@@ -124,6 +130,7 @@ def main():
             else:
                 print("No books in the library.")
 
+        #Hvis brugeren vil se hvilke medlemmer der er i bibloteket
         elif choice == "10":
             members = library.display_members()
             if members:
@@ -132,6 +139,7 @@ def main():
             else:
                 print("No members in the library.")
 
+        #Hvis brugeren vil søge efter en specifik bog
         elif choice == "11":
             query = input("Search query: ")
             results = library.search_books(query)
@@ -141,6 +149,7 @@ def main():
             else:
                 print("No books found.")
 
+        #Hvis systemet skal afslutte
         elif choice == "12":
             break
 
